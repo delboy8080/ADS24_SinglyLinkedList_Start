@@ -20,7 +20,9 @@ SListNode<T>::SListNode(T data)
 template <class T>
 void SListNode<T>::insertAfter(T data)
 {
-	
+	SListNode<T>* temp = new SListNode<T>(data);
+	temp->next = this->next;
+	this->next = temp;
 
 }
 template <class T>
