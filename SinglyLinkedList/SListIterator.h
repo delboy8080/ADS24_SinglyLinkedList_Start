@@ -18,33 +18,10 @@ public:
 	void start();
 	bool isValid();
 	T& item();
-	SListIterator<T> operator++();
-	SListIterator<T> operator++(int u);
-	T& operator*();
+	
 
 };
-template <class T>
-SListIterator<T> SListIterator<T>::operator++()
-{
-	if (currentNode == nullptr)
-		return *this;
-	currentNode = currentNode->getNext();
-	return *this;
-}
-template <class T>
-SListIterator<T> SListIterator<T>::operator++(int u)
-{
-	if (currentNode == nullptr)
-		return *this;
-	SListIterator<T> copy = SListIterator(*this);
-	currentNode = currentNode->getNext();
-	return copy;
-}
-template <class T>
-T& SListIterator<T>::operator*()
-{
-	return currentNode->getData();
-}
+
 template <class T>
 SListIterator<T>::SListIterator(SList<T> *l, SListNode<T> *n)
 {
