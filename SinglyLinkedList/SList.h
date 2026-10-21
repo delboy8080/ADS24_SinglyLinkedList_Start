@@ -49,7 +49,7 @@ void SList<T>::removeTail()
 template <class T>
 SList<T>::SList()
 {
-	
+	head = tail = nullptr;
 }
 
 template <class T>
