@@ -19,13 +19,49 @@ public:
 template <class T>
 void SList<T>::remove(SListIterator<T> iter)
 {
-	
+	if (iter.list != this || iter.currentNode == nullptr || head == nullptr)
+	{
+		return;
+	}
+	else if (iter.currentNode == head)
+	{
+		removeHead();
+	}
+	else
+	{
+		SListNode<T>* temp = head;
+		while (temp->getNext() != iter.currentNode)
+		{
+			temp = temp->getNext();
+		}
+		temp->setNext(iter.currentNode->getNext());
+		if (iter.currentNode == tail)
+		{
+			tail = temp;
+		}
+		delete iter.currentNode;
+
+	}
 }
 template <class T>
 void SList<T>::insert(SListIterator<T> iter, T data)
 {
-	
-
+	if (iter.list != this)
+	{
+		return;
+	}
+	else if (iter.currentNode == nullptr)
+	{
+		append(data);
+	}
+	else
+	{
+		iter.currentNode->insertAfter(data);
+		if (iter.currentNode == tail)
+		{
+			tail = iter.currentNode->getNext();
+		}
+	}
 }
 
 template <class T>
