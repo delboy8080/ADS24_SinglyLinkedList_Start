@@ -36,16 +36,47 @@ SListIterator<T> SList<T>::getIterator()
 template <class T>
 void SList<T>::removeHead()
 {
-
+	if (head == nullptr)
+	{
+		return;
+	}
+	else if (head == tail)
+	{
+		delete head;
+		head = tail = nullptr;
+	}
+	else
+	{
+		SListNode<T>* temp = head;
+		head = head->getNext();
+		delete temp;
+	}
 	
 }
 
 template <class T>
 void SList<T>::removeTail()
 {
-	
-
-	
+	if (head == nullptr)
+	{
+		return;
+	}
+	else if (head == tail)
+	{
+		delete head;
+		head = tail = nullptr;
+	}
+	else
+	{
+		SListNode<T>* temp = head;
+		while (head->getNext() != tail)
+		{
+			temp = temp->getNext();
+		}
+		tail = temp;
+		delete tail->getNext();
+		tail->setNext(nullptr);
+	}
 }
 template <class T>
 SList<T>::SList()
@@ -69,7 +100,16 @@ void SList<T>::append(T data)
 template <class T>
 void SList<T>::prepend(T data)
 {
-	
+	if (head == nullptr)
+	{
+		head = tail = new SListNode<T>(data);
+	}
+	else
+	{
+		SListNode<T>* temp = new SListNode<T>(data);
+		temp->setNext(head);
+		head = temp;
+	}
 }
 
 template <class T>

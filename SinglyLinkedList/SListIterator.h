@@ -19,9 +19,31 @@ public:
 	bool isValid();
 	T& item();
 	
+	T& operator*();
+	SListIterator<T> operator++();
+	SListIterator<T> operator++(int u);
+
 
 };
+template <class T>
+T& SListIterator<T>::operator*()
+{
+	return this->currentNode->getData();
+}
+template <class T>
+SListIterator<T> SListIterator<T>::operator++()
+{
+	this->advance();
+	return *this;
+}
+template <class T>
+SListIterator<T> SListIterator<T>::operator++(int u)
+{
+	SListIterator<T> iter(*this);
+	this->advance();
+	return iter;
 
+}
 template <class T>
 SListIterator<T>::SListIterator(SList<T> *l, SListNode<T> *n)
 {
