@@ -36,6 +36,7 @@ SListIterator<T> SList<T>::getIterator()
 template <class T>
 void SList<T>::removeHead()
 {
+
 	
 }
 
@@ -55,10 +56,20 @@ SList<T>::SList()
 template <class T>
 void SList<T>::append(T data)
 {
+	if (head == nullptr)
+	{
+		head = tail = new SListNode<T>(data);
+	}
+	else
+	{
+		tail->insertAfter(data);
+		tail = tail->getNext();
+	}
 }
 template <class T>
 void SList<T>::prepend(T data)
 {
+	
 }
 
 template <class T>
